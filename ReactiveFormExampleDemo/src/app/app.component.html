@@ -1,0 +1,77 @@
+<h1>Reactive Example:</h1>
+<div class="container">
+  <form [formGroup]="myForm">
+    <div class="form-group">
+      <label>Name: <span class="text-danger">*</span></label>
+      <input type="text" class="form-control" id="name" formControlName="name"
+        [class.is-invalid]="name.invalid && (name.dirty || name.touched || isSubmit)">
+      <!-- <input type="text" id="name" maxlength="20" class="form-control" formControlName="name"  [class.is-invalid]="name.invalid && (name.dirty || name.touched || isSumitted)" > -->
+
+      <div *ngIf="name.invalid && (name.dirty || name.touched || isSubmit)" class="invalid-feedback">
+        <div *ngIf="name.errors?.['required']">
+          This field is required.
+        </div>
+        <div *ngIf="name.errors?.['minlength']">
+          This field must have at least 5 character.
+        </div>
+        <div *ngIf="name.errors?.['maxlength']">
+          This field must have at most 10 characters.
+        </div>
+        <div *ngIf="name.errors?.['pattern']">
+          This field must have only alphabets.
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Email: <span class="text-danger">*</span></label>
+      <input type="text" class="form-control" id="email" formControlName="email"
+        [class.is-invalid]="email.invalid && (email.dirty || email.touched || isSubmit)">
+      <div *ngIf="email.invalid && (email.dirty || email.touched || isSubmit)" class="invalid-feedback">
+        <div *ngIf="email.errors?.['required']">
+          This field is required.
+        </div>
+        <div *ngIf="email.errors?.['minlength']">
+          This field must have at least 5 character.
+        </div>
+        <div *ngIf="email.errors?.['maxlength']">
+          This field must have at most 10 characters.
+        </div>
+        <div *ngIf="email.errors?.['pattern']">
+          This field must have only alphabets.
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Phone No: <span class="text-danger">*</span></label>
+      <input type="text" class="form-control" id="phone" formControlName="phone"
+        [class.is-invalid]="phone.invalid && (phone.dirty || phone.touched || isSubmit)">
+      <div *ngIf="phone.invalid && (phone.dirty || phone.touched || isSubmit)" class="invalid-feedback">
+        <div *ngIf="phone.errors?.['required']">
+          This field is required.
+        </div>
+        <div *ngIf="phone.errors?.['minlength']">
+          This field must have at least {{phone.errors?.['minlength'].requiredLength}} character.
+        </div>
+        <div *ngIf="phone.errors?.['maxlength']">
+          This field must have at most {{phone.errors?.['maxlength'].requiredLength}} characters.
+        </div>
+        <div *ngIf="phone.errors?.['pattern']">
+          This field must have only alphabets.
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <input type="checkbox" name="check" formControlName="acceptTerms" >
+      <label for="acceptTerms" class="form-check-label" [class.text-danger]="acceptTerms.invalid && (acceptTerms.dirty || acceptTerms.touched || isSubmit)">I have read and agree to the Terms</label>
+      <div *ngIf="acceptTerms.invalid && (acceptTerms.dirty || acceptTerms.touched || isSubmit)" class="invalid-feedback d-block">
+        <div *ngIf="acceptTerms.errors?.['required']">
+          This field is required.
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <button (click)="onSend()" class="btn btn-sm btn-primary">Submit</button>
+      <button (click)="reset()" class="btn btn-sm btn-warning float-right">Reset</button>
+    </div>
+  </form>
+</div>
