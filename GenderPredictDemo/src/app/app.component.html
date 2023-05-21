@@ -1,0 +1,27 @@
+<div class="container-fluid">
+  <div class="card b-2 m-2 p-2">
+    <div class="card-header">
+      <h1>Predict your Gender:</h1>
+    </div>
+    <div>
+      <label>Name:</label><input type="text" #nm>
+      <!-- <label>Age:</label><input type="number" #ag> -->
+      <button (click)="onPredict(nm)" class="btn btn-sm btn-outline-danger">Predict</button>
+    </div>
+    <h2 *ngIf="predictGender">Hii {{nm.value}} your Gender is {{predictGender}} and your Age is {{predictAge}}</h2>
+    <!-- <div>
+      <p *ngFor="let po of post">
+        {{po.title}}
+      </p>
+    </div> -->
+    <!-- <div>
+      <p *ngFor="let ti of post">{{ti.body}} = {{ti.id}}</p>
+    </div> -->
+    <!-- <div>
+      <p *ngFor="let ne of post">{{ne.id}}: {{ne.name}} = {{ne.email}}</p>
+    </div> -->
+    <div>
+      <p *ngFor="let ph of photo">{{ph.id}} = {{ph.url}}</p>
+    </div>
+  </div>
+</div>

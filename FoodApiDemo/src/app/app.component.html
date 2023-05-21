@@ -1,0 +1,61 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <section>
+    <a class="navbar-brand" href="#">Food Shop</a>
+  </section>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#">About <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Foods <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Contact Us <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" name="tuban" type="text" id="search" placeholder="Search Foods..." aria-label="Search" [(ngModel)]="searchedData">
+      <button class="btn btn-success my-2 my-sm-0" type="submit" (click)="onSelect()">Search</button>
+    </form>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="card">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover table-bordered">
+          <tr>
+            <th>Food Name:</th>
+            <th>Food Details:</th>
+            <th>Food Price:</th>
+            <!-- <th>Image URL:</th> -->
+            <th>Image:</th>
+          </tr>
+          <tr *ngFor="let foo of foodList |filter_Food:searchedData | 
+            paginate: {
+          itemsPerPage: 2,
+          currentPage: startLinkIndex,
+          totalItems: totalRows}">
+            <td>{{foo.food_name}}</td>
+            <td>{{foo.desc}}</td>
+            <td>{{foo.price | currency:'INR'}}</td>
+            <!-- <td>{{foo.food_image}}</td> -->
+            <td>
+              <img [src]="foo.food_image" height="100px" width="100px" [title]="foo.food_name">
+            </td>
+          </tr>
+        </table>
+        <pagination-controls (pageChange)="startLinkIndex = $event"></pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>

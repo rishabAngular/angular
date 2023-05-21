@@ -1,0 +1,42 @@
+<div class="container-fluid">
+  <header class="model-header">
+    <h3>Search Foods:</h3>
+  </header>
+  <div class="row">
+    <div class="col-lg-6">
+      <header class="model-header">
+        <h3>Displaying All Foods:</h3>
+      </header>
+    <br/>
+      <section class="row">
+        <input type="search" class="form-control" placeholder="Search Foods...." [(ngModel)]="itemToSearched">
+      </section>
+      <ul class="list-group">
+        <li (click)="onSelect(foodItem)" *ngFor="let foodItem of foodList | filterFood:itemToSearched" class="list-group-item">{{foodItem.food}}
+          <span class="float-right badge badge-primary">{{foodItem.price | currency:'INR'}}</span>
+        </li>
+      </ul>
+    </div>
+    <div class="col-lg-6" *ngIf="selectedFoodItem.length!=0">
+      <header class="model-header">
+        <h3>Details Of {{selectedFoodItem.food}}</h3>
+      </header>
+      <div>
+        <table class="table table-hover table-bordered">
+          <tr>
+            <th>Food:</th>
+            <th>Price:</th>
+            <th>Image:</th>
+          </tr>
+          <tr>
+            <td>{{selectedFoodItem.food}}</td>
+            <td>{{selectedFoodItem.price | currency:'INR'}}</td>
+            <td>
+              <img [src]="selectedFoodItem.pic" alt="no image" [title]="selectedFoodItem.food" height="100px" width="100px">
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

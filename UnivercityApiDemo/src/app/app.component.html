@@ -1,0 +1,39 @@
+<div class="container-fluid">
+  <section class="float-right">
+    <input type="text" class="form-control" placeholder="Search University...." [(ngModel)]="searchedData2">
+    <select class="form-control" [(ngModel)]="searchedData">
+      <option value="">Choose the State</option>
+      <option *ngFor="let state of stateList">{{state}}</option>
+    </select> 
+  </section>
+  <header class="modal-header">
+    <h1>Showing All University List:</h1>
+  </header>
+  <div class="card">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover table-bordered">
+          <tr>
+            <th>State:</th>
+            <th>University Name:</th>
+            <th>Website:</th>
+          </tr>
+          <tr *ngFor="let uni of universityList | 
+          filter_State:searchedData | 
+          filter_University:searchedData2 | 
+          paginate:{
+            itemsPerPage:5,
+            currentPage:startLinkIndex,
+            totalItems:totalRows
+          }">
+            <td>{{uni['state-province']}}</td>
+            <td>{{uni.name}}</td>
+            <td><a [href]="uni.web_pages[0]" target="_blank">{{uni.web_pages[0]}}</a></td>
+          </tr>
+        </table>
+
+        <pagination-controls (pageChange)="startLinkIndex = $event"></pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>

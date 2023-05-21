@@ -1,0 +1,30 @@
+<div class="container">
+  <form #userData="ngForm">
+    <div class="form-group">
+      <header class="modal-header">
+        <h1>SignUp:[TDF]:</h1>
+      </header>
+      <label>Name:</label>
+      <input type="text" #nm="ngModel" [class.is-invalid]="nm.touched && nm.invalid" name="t1" required class="form-control" [(ngModel)]="myForm.name">
+    </div>
+    <div class="form-group">
+      <label>Email:</label>
+      <input type="text" #em="ngModel" [class.is-invalid]="em.touched && em.invalid" name="t2" required class="form-control" [(ngModel)]="myForm.email">
+    </div>
+    <div class="form-group">
+      <label>Phone:</label>
+      <input type="number" #ph="ngModel" [class.is-invalid]="ph.touched && ph.invalid" name="t3" required class="form-control" [(ngModel)]="myForm.phone">
+    </div>
+    <div class="form-group">
+      <label>Password:</label>
+      <input type="password" #pass1="ngModel" [class.is-invalid]="pass1.touched && pass1.invalid" name="p1" required class="form-control" [(ngModel)]="myForm.pass1">
+    </div>
+    <div class="form-group">
+      <label>Confirm Password:</label>
+      <input type="password" #pass2="ngModel" [class.is-invalid]="pass2.touched && pass2.invalid" name="p2" required class="form-control" [(ngModel)]="myForm.pass2">
+    </div>
+    <div class="form-group">
+      <button type="button" class="btn btn-outline-primary" (click)="onSubmit(userData)">Submit</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,59 @@
+<div class="container">
+  <header class="modal-header"><h1>SignUp [Reactive]:</h1></header>
+  <form [formGroup]="myForm">
+    <div class="form-group">
+      <label>Name :</label>
+      <input type="text" id="nm" class="form-control" formControlName="name" [class.is-invalid]="Name.touched && Name.invalid">
+      <section *ngIf="Name.touched && Name.invalid">
+        <small class="text-danger" *ngIf="Name.errors?.['required']">Name is Requared.</small>
+        <small class="text-danger" *ngIf="Name.errors?.['pattern']">Name can't allow Numbers, Min 3 to Max : 8 Chars Long.</small>
+      </section>
+    </div>
+    <div class="form-group">
+      <label>Phone :</label>
+      <input type="text" id="ph" class="form-control" formControlName="phone" [class.is-invalid]="Phone.touched && Phone.invalid">
+      <section *ngIf="Phone.touched && Phone.invalid">
+        <small class="text-danger" *ngIf="Phone.errors?.['required']">Phone is Requared.</small>
+        <small class="text-danger" *ngIf="Phone.errors?.['pattern']">Invalid Indian Mobile Number.</small>
+      </section>
+    </div>
+    <div class="form-group">
+      <label>Email :</label>
+      <input type="text" id="em" class="form-control" formControlName="email" [class.is-invalid]="Email.touched && Email.invalid">
+      <section *ngIf="Email.touched && Email.invalid">
+        <small class="text-danger" *ngIf="Email.errors?.['required']">Email is Requared.</small>
+        <small class="text-danger" *ngIf="Email.errors?.['pattern']">Invalid Email Address......</small>
+      </section>
+    </div>
+    <!--Adding Address Info-->
+    <fieldset formGroupName="address">
+      <legend><h4>Address Info:</h4></legend>
+        <div class="form-group">
+          <label>State :</label>
+          <select id="st" class="form-control" formControlName="state" [class.is-invalid]="State.touched && State.invalid">
+            <option value="">---Choose a State---</option>
+            <option>West Bengal</option>
+            <option>Maharasthra</option>
+            <option>Uttar Pradesh</option>
+            <option>Bihar</option>
+          </select>
+          <section *ngIf="State.touched && State.invalid">
+            <small class="text-danger" *ngIf="State.errors?.['required']">Please selet a State from The List.</small>
+          </section>
+        </div>
+        <div class="form-group">
+          <label>City :</label>
+          <select id="ct" class="form-control" formControlName="city" [class.is-invalid]="City.touched && City.invalid">
+            <option value="">---Choose a City---</option>
+            <option>Kolkata</option>
+            <option>Mumbai</option>
+            <option>Banaras</option>
+            <option>Patna</option>
+          </select>
+          <section *ngIf="City.touched && City.invalid">
+            <small class="text-danger" *ngIf="City.errors?.['required']">Please selet a City from The List.</small>
+          </section>
+        </div>
+      </fieldset>
+  </form>
+</div>
