@@ -1,0 +1,64 @@
+<div class="container">
+    <div class="float-right">
+        Wellcome {{loggedUser}}
+        <a href="#" (click)="onLogout()">LogOut</a>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 border-right">
+            <header class="modal-header">
+                <h4>Displaying All Todos:</h4>
+            </header>
+            <div class="form-group">
+                <input type="text" name="search" class="form-control" placeholder="search title..."
+                    [(ngModel)]="searchedTerm">
+            </div>
+            <section class="table-responsive">
+                <table class="table table-hover table-bordered">
+                    <tr>
+                        <th>#</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Created</th>
+                    </tr>
+                    <tr *ngFor="let todo of todoList |todo_filter:searchedTerm | paginate:{
+                        itemsPerPage:4,
+                        currentPage:startLinkIndex,
+                        totalItems:totalRows
+                    }">
+                        <td><input type="radio" name="r1" (change)="isSelect(todo)"></td>
+                        <td>{{todo.title}}</td>
+                        <td>{{todo.description}}</td>
+                        <td>{{todo.created}}</td>
+                    </tr>
+                </table>
+                <pagination-controls (pageChange)="startLinkIndex = $event"></pagination-controls>
+            </section>
+        </div>
+        <div class="col-lg-6">
+            <header class="modal-header">
+                <h4>Add Todo:</h4>
+            </header>
+            <form>
+                <div class="form-group">
+                    <label>Title:</label>
+                    <input type="text" id="titleText" [(ngModel)]="newTodo.title" name="title" required
+                        class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Description:</label>
+                    <textarea name="desc" id="descText" [(ngModel)]="newTodo.desc" required class="form-control"
+                        cols="5" rows="9"></textarea>
+                </div>
+                <div class="form-group">
+                    <section *ngIf="selectedTodo.length==0">
+                        <button class="btn btn-sm btn-outline-primary" (click)="onSubmit()" type="button">Add</button>
+                    </section>
+                    <section *ngIf="selectedTodo.length!==0">
+                        <button class="btn btn-sm btn-outline-info" (click)="onUpdate()">Update</button> |
+                        <button class="btn btn-sm btn-outline-danger" (click)="onDelete()">Delete</button>
+                    </section>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

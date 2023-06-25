@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 border-right">
+            <header class="modal-header">
+                <h4>SignUp:</h4>
+            </header>
+            <form [formGroup]="SignUpForm">
+                <div class="form-group">
+                    <label>Name:</label>
+                    <input type="text" id="t1" formControlName="name" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Phone:</label>
+                    <input type="number" id="t2" formControlName="phone" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Email:</label>
+                    <input type="text" id="t3" formControlName="email" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Upload Profile Pic:</label>
+                    <input type="file" id="file" class="form-control" (change)="onSelect($event)">
+                </div>
+                <div class="form-group">
+                    <label>Password:</label>
+                    <input type="password" id="p1" formControlName="pass1" class="form-control">
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-sm btn-outline-primary" (click)="onSubmit()">Submit</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-6">
+            <header class="modal-header">
+                <h4>SignIn:</h4>
+            </header>
+            <form>
+                <div class="form-group">
+                    <label>Email:</label>
+                    <input type="text" name="emailText" [(ngModel)]="loginForm.email" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Password:</label>
+                    <input type="password" name="pass1Text" [(ngModel)]="loginForm.pass1" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <button type="button" (click)="onLogin()" class="btn btn-sm btn-outline-info">LogIn</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

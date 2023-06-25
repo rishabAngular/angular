@@ -1,0 +1,41 @@
+<p>HTML page1 works! 1</p>
+<ng-container>
+    <h1>Hi</h1>
+    <p>it can be display without any condition</p>
+    <p>we need to add *ngIf directive (structural) as a condition</p>
+</ng-container>
+<ng-template [ngIf]="display">
+    <h1>Hii</h1>
+    <p>it can not be display without any condition</p>
+    <p>we need to add [ngIf] directive (attribute) as a condition</p>
+</ng-template>
+<p>HTML page1 works! 2</p>
+<button (click)="display=!display">Show Change {{display}}</button>
+
+<p style="display: block;">display: none;</p>
+<p style="visibility:visible;">visibility: hidden;</p>
+<h2>Test</h2>
+<p>
+    display: none; can not occupied / capture dom space
+    visibility: hidden; can occupied / capture dom space
+</p>
+
+
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <div class="table table-hover table-bordered">
+                    <tr>
+                        <th>Title:</th>
+                        <th>Body:</th>
+                    </tr>
+                    <tr *ngFor="let foo of postList">
+                        <td>{{foo.title}}</td>
+                        <td>{{foo.body}}</td>
+                    </tr>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

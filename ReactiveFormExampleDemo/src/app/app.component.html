@@ -60,10 +60,54 @@
         </div>
       </div>
     </div>
+
     <div class="form-group">
-      <input type="checkbox" name="check" formControlName="acceptTerms" >
-      <label for="acceptTerms" class="form-check-label" [class.text-danger]="acceptTerms.invalid && (acceptTerms.dirty || acceptTerms.touched || isSubmit)">I have read and agree to the Terms</label>
-      <div *ngIf="acceptTerms.invalid && (acceptTerms.dirty || acceptTerms.touched || isSubmit)" class="invalid-feedback d-block">
+      <label>Password: <span class="text-danger">*</span></label>
+      <div class="input-group input-group-sm has-validation">
+        <input [type]="showPassword ? 'text' : 'password'" class="form-control" id="phone"><button type="button"
+          class="btn btn-outline-secondary" (click)="checkPass()">
+          <i class="bi" [ngClass]="{'bi-eye-fill': !showPassword, 'bi-eye-slash-fill': showPassword}"></i>
+        </button>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Confirm Password: <span class="text-danger">*</span></label>
+      <div class="input-group input-group-sm has-validation">
+        <input [type]="showPassword ? 'text' : 'password'" class="form-control" id="phone"><button type="button"
+          class="btn btn-outline-secondary" (click)="checkPass()">
+          <i class="bi" [ngClass]="{'bi-eye-fill': !showPassword, 'bi-eye-slash-fill': showPassword}"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Pin: <span class="text-danger">*</span></label>
+      <input type="text" class="form-control" id="pin" formControlName="pin"
+        [class.is-invalid]="pin.invalid && (pin.dirty || pin.touched || isSubmit)">
+      <div *ngIf="pin.invalid && (pin.dirty || pin.touched || isSubmit)" class="invalid-feedback">
+        <div *ngIf="pin.errors?.['required']">
+          This field is required.
+        </div>
+        <div *ngIf="pin.errors?.['minlength']">
+          This field must have at least {{pin.errors?.['minlength'].requiredLength}} character.
+        </div>
+        <div *ngIf="pin.errors?.['maxlength']">
+          This field must have at most {{pin.errors?.['maxlength'].requiredLength}} characters.
+        </div>
+        <div *ngIf="pin.errors?.['pattern']">
+          This field must have only alphabets.
+        </div>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <input type="checkbox" name="check" formControlName="acceptTerms">
+      <label for="acceptTerms" class="form-check-label"
+        [class.text-danger]="acceptTerms.invalid && (acceptTerms.dirty || acceptTerms.touched || isSubmit)">I have read
+        and agree to the Terms</label>
+      <div *ngIf="acceptTerms.invalid && (acceptTerms.dirty || acceptTerms.touched || isSubmit)"
+        class="invalid-feedback d-block">
         <div *ngIf="acceptTerms.errors?.['required']">
           This field is required.
         </div>
