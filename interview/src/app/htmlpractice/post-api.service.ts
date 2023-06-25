@@ -11,4 +11,7 @@ export class PostApiService {
   getPostList(){
     return this.http.get('https://jsonplaceholder.typicode.com/posts');
   }
+  getPostListPromiss(){
+    return this.http.get('https://jsonplaceholder.typicode.com/posts').toPromise();
+  }
 }

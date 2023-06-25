@@ -11,11 +11,15 @@ export class Page1Component implements DoCheck,OnInit {
 
   constructor(private po:PostApiService){}
   ngOnInit(): void {
-    let data = this.po.getPostList();
-    data.subscribe((res:any)=>{
-      console.log(res);
+    this.po.getPostList().subscribe((res:any)=>{
+      console.log("subscribe",res);
       this.postList = res;
     });
+
+    this.po.getPostListPromiss().then((res:any)=>{
+      console.log("promiss",res);
+      // this.postList = res;
+    })
   }
 
   ngDoCheck(): void {
